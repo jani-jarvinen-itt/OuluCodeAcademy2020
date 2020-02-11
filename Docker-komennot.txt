@@ -1,0 +1,13 @@
+docker build -f "C:\Demo\Dockerfile"
+    --force-rm -t dockerdemowebapp:dev
+    --target base
+    --label "com.microsoft.created-by=visual-studio"
+    --label "com.microsoft.visual-studio.project-name=DockerDemoWebApp"
+    "C:\Academy\Oulu\CodeAcademy2020Oulu\AspNetWebApplicationDemo"
+
+docker run -dt -v
+    "C:\Users\jani.jarvinen\vsdbg\vs2017u5:/remote_debugger:rw"
+    -v "C:\...\DockerDemoWebApp:/app"
+    -v "C:\...\AspNetWebApplicationDemo:/src"
+    -v "C:\Users\jani.jarvinen\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro"
+    -v "C:\Users\jani.jarvinen\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro" -v "C:\Users\jani.jarvinen\.nuget\packages\:/root/.nuget/fallbackpackages3" -v "C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages" -v "C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages2" -e "DOTNET_USE_POLLING_FILE_WATCHER=1" -e "ASPNETCORE_ENVIRONMENT=Development" -e "ASPNETCORE_URLS=https://+:443;http://+:80" -e "NUGET_PACKAGES=/root/.nuget/fallbackpackages3" -e "NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2;/root/.nuget/fallbackpackages3" -P --name DockerDemoWebApp --entrypoint tail dockerdemowebapp:dev -f /dev/null

@@ -1,0 +1,2 @@
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts'
