@@ -1,6 +1,7 @@
 import csv
 
 def lue_csv_tiedostosta_vanhin_henkilö(csv_tiedoston_nimi = None, erotinmerkki = None):
+    """Lukee annetun CSV-tiedosto ja sieltä muodossa 'Nimi;Ikä' olevilta riveiltä etsii vanhimman henkilön."""
 
     # jos tiedostonimeä ei ole annettu, kysytään se käyttäjältä
     tiedosto = csv_tiedoston_nimi
