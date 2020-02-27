@@ -1,0 +1,34 @@
+db.inventory.insertOne(
+    {
+        item: "canvas",
+        qty: 100, tags: ["cotton"],
+        size: { h: 28, w: 35.5, uom: "cm" }
+    }
+)
+
+db.customers.insertOne(
+    { name: "Asiakas Oy", zipcode: 80100, contactPerson: "Maija Möttönen" }
+)
+
+db.customers.insertOne(
+    { name: "Toinen firma Oy", zipcode: 64500, contactPerson: "Teppo Testaaja" }
+)
+
+db.customers.insertOne(
+    { name: "Kolmas Oy", zipcode: "00100", contactPerson: "Kaija Kolmonen", email: "kaija@kolmas.fi" }
+)
+
+db.customers.find()
+db.customers.find( { zipcode: 80100 } )
+
+
+db.customers.updateOne(
+    { name: "Asiakas Oy" },
+    {
+      $set: { email: "info@asiakas.fi", zipcode: 80200 },
+      $currentDate: { lastModified: true }
+    }
+ )
+
+ db.customers.deleteOne( { name: "Asiakas Oy" } )
+ 

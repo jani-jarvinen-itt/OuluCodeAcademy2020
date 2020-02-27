@@ -1,0 +1,13 @@
+Numerot.Luku1
+-------------
+6
+10
+5
+11                      SELECT Luku1
+8                       FROM Numerot
+4                       WHERE Luku1 > 5
+2                       ORDER BY Luku1
+7
+1
+3
+9
