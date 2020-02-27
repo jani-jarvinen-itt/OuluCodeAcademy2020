@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -149,6 +151,24 @@ namespace WinFormsSqlDemo
             {
                 MessageBox.Show($"{asiakas.CompanyName} {asiakas.Country}");
             }
+        }
+
+        private async void button8_Click(object sender, EventArgs e)
+        {
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("test");
+            var collection = database.GetCollection<BsonDocument>("customers");
+
+            // await collection.InsertOneAsync(new BsonDocument("Name", "Jack"));
+
+            var list = await collection.Find(new BsonDocument()).ToListAsync();
+
+            foreach (var document in list)
+            {
+                MessageBox.Show(document["name"].ToString());
+            }
+
+            MessageBox.Show("Kysely suoritettu loppuun.");
         }
     }
 }
