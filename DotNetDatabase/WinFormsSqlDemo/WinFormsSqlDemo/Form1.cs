@@ -139,12 +139,13 @@ namespace WinFormsSqlDemo
         {
             NorthwindEntities entities = new NorthwindEntities();
 
-            List<Customers> suomalaiset = (from c in entities.Customers
-                                           where c.Country == "Finland"
-                                           orderby c.CompanyName
-                                           select c).ToList();
+            string maa = countryTextBox.Text;
+            List<Customers> maanAsiakkaat = (from c in entities.Customers
+                                             where c.Country == maa
+                                             orderby c.CompanyName
+                                             select c).ToList();
 
-            foreach (Customers asiakas in suomalaiset)
+            foreach (Customers asiakas in maanAsiakkaat)
             {
                 MessageBox.Show($"{asiakas.CompanyName} {asiakas.Country}");
             }
