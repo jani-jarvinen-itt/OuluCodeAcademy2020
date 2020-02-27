@@ -60,6 +60,35 @@ namespace WinFormsSqlDemo
             Customers cust = entities.Customers.First();
 
             MessageBox.Show($"{cust.CompanyName} {cust.City}");
+
+            foreach (Orders order in cust.Orders)
+            {
+                MessageBox.Show($"{order.ShipAddress} {order.OrderDate}");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            NorthwindEntities entities = new NorthwindEntities();
+            List<Customers> custs = entities.Customers.ToList();
+
+            MessageBox.Show(custs.Count.ToString());
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Customers uusi = new Customers()
+            {
+                CustomerID = "EFTST",
+                CompanyName = "Uusi asiakas EF:n kautta",
+                Country = "Finland"
+            };
+
+            NorthwindEntities entities = new NorthwindEntities();
+            entities.Customers.Add(uusi);
+            entities.SaveChanges();
+
+            MessageBox.Show("Uusi asiakas lisätty.");
         }
     }
 }
