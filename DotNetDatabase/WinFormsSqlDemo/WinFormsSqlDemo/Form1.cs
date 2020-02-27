@@ -90,5 +90,49 @@ namespace WinFormsSqlDemo
 
             MessageBox.Show("Uusi asiakas lisätty.");
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            NorthwindEntities entities = new NorthwindEntities();
+            Customers cust = entities.Customers.First();
+
+            cust.Address = "Kotikatu 123";
+            cust.City = "Oulu";
+
+            entities.SaveChanges();
+
+            MessageBox.Show("Asiakkaan osoitetiedosto muutettu.");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            int[] luvut = { 6, 10, 5, 11, 8, 4, 2, 7, 1, 3, 9 };
+
+            /*
+            // tulosta luvut > 5 numerojärjestyksessä
+            List<int> suuretLuvut = new List<int>();
+            foreach (int luku in luvut)
+            {
+                if (luku > 5)
+                {
+                    suuretLuvut.Add(luku);
+                }
+            }
+            suuretLuvut.Sort();
+            foreach (int luku in suuretLuvut)
+            {
+                MessageBox.Show(luku.ToString());
+            }
+            */
+
+            List<int> suuretLuvut = (from l in luvut
+                                     where l > 5
+                                     orderby l
+                                     select l).ToList();
+            foreach (int luku in suuretLuvut)
+            {
+                MessageBox.Show(luku.ToString());
+            }
+        }
     }
 }
