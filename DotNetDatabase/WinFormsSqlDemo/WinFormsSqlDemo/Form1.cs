@@ -134,5 +134,20 @@ namespace WinFormsSqlDemo
                 MessageBox.Show(luku.ToString());
             }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            NorthwindEntities entities = new NorthwindEntities();
+
+            List<Customers> suomalaiset = (from c in entities.Customers
+                                           where c.Country == "Finland"
+                                           orderby c.CompanyName
+                                           select c).ToList();
+
+            foreach (Customers asiakas in suomalaiset)
+            {
+                MessageBox.Show($"{asiakas.CompanyName} {asiakas.Country}");
+            }
+        }
     }
 }
